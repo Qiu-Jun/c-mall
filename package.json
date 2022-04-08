@@ -1,22 +1,30 @@
 {
-  "name": "c-mall",
-  "version": "1.0.0",
-  "description": "商城-接单用",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/QJune/c-mall.git"
-  },
-  "keywords": [
-    "cmall"
-  ],
-  "author": "June",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/QJune/c-mall/issues"
-  },
-  "homepage": "https://github.com/QJune/c-mall#readme"
+    "name": "c-mall",
+    "version": "1.0.0",
+    "description": "商城-接单用",
+    "main": "index.js",
+    "scripts": {
+        "prepare": "husky install",
+        "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/QJune/c-mall.git"
+    },
+    "keywords": [
+        "cmall"
+    ],
+    "author": "June",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/QJune/c-mall/issues"
+    },
+    "homepage": "https://github.com/QJune/c-mall#readme",
+    "devDependencies": {
+        "@commitlint/cli": "^16.2.3",
+        "@commitlint/config-conventional": "^16.2.1",
+        "husky": "^7.0.4",
+        "lint-staged": "^12.3.7",
+        "prettier": "^2.6.2"
+    }
 }
