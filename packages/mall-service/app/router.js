@@ -1,5 +1,6 @@
-'use strict';
+'use strict'
 
-module.exports = app => {
-  require('./router/admin')(app);
-};
+module.exports = (app) => {
+    require('./router/admin')(app)
+    require('./router/common')(app)
+}

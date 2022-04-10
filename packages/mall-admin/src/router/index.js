@@ -76,7 +76,52 @@ export const constantRoutes = [
                 path: 'cateManage',
                 component: () => import('@/pages/goods/cate/index.vue'),
                 name: 'cateManage',
-                meta: { title: '列表管理' }
+                meta: { title: '类目管理' }
+            }
+        ]
+    },
+    {
+        path: '/goods/view',
+        hidden: true,
+        redirect: '/goods/view/index',
+        meta: { noCache: true },
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/pages/goods/goods/view.vue'),
+                name: 'goodsView',
+                meta: { title: '商品详情' }
+            }
+        ]
+    },
+    {
+        path: '/goods/edit',
+        hidden: true,
+        redirect: '/goods/edit/index',
+        meta: { noCache: true },
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/pages/goods/goods/edit.vue'),
+                name: 'goodsEdit',
+                meta: { title: '编辑商品', noCache: true }
+            }
+        ]
+    },
+    {
+        path: '/goods/add',
+        hidden: true,
+        redirect: '/goods/add/index',
+        meta: { noCache: true },
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/pages/goods/goods/add.vue'),
+                name: 'goodsAdd',
+                meta: { title: '新增商品', noCache: true }
             }
         ]
     },

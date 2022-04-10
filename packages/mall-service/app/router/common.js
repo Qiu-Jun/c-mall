@@ -1,9 +1,6 @@
-'use strict';
+'use strict'
 
-/**
- * @description 管理端的接口
- * @param {*} app
- */
-module.exports = () => {
-
-};
+module.exports = (app) => {
+    const { router, controller } = app
+    router.post('/utils/upload', controller.utils.upload.upload)
+}

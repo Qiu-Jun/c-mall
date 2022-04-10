@@ -6,6 +6,7 @@
  */
 import axios from 'axios'
 import router from '@/router/index'
+import { ElMessage } from 'element-plus'
 
 const service = axios.create({
     baseURL: '/api/',
@@ -27,7 +28,7 @@ service.interceptors.response.use(
         const { status, data: resData } = response
         if (status !== 200) return Promise.reject(new Error('请求失败'))
         return new Promise((resolve, reject) => {
-            const { code, data } = resData
+            const { code, data, msg } = resData
             switch (code) {
                 case 200:
                     resolve({
@@ -39,6 +40,10 @@ service.interceptors.response.use(
                     router.push('/login')
                     break
                 default:
+                    ElMessage({
+                        type: 'error',
+                        message: msg
+                    })
                     reject(new Error('请求错误'))
                     break
             }
