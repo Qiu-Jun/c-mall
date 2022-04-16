@@ -57,6 +57,21 @@ export const constantRoutes = [
         ]
     },
     {
+        path: '/order/detail',
+        hidden: true,
+        redirect: '/order/detail/index',
+        meta: { noCache: true },
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/pages/order/detail.vue'),
+                name: 'orderDetail',
+                meta: { title: '订单详情' }
+            }
+        ]
+    },
+    {
         path: '/goods',
         component: Layout,
         redirect: '/goods/goodsManage',
@@ -168,9 +183,53 @@ export const constantRoutes = [
     }
 ]
 
+export const asyncRoutes = [
+    {
+        path: '/merchant',
+        component: Layout,
+        redirect: '/merchant/list',
+        name: 'merchant',
+        meta: {
+            title: '商家管理',
+            icon: 'goods'
+        },
+        children: [
+            {
+                path: 'list',
+                component: () => import('@/pages/merchant/list.vue'),
+                name: 'merchantList',
+                meta: { title: '商家列表', roles: ['admin'] }
+            },
+            {
+                path: 'merchantAdd',
+                component: () => import('@/pages/merchant/add.vue'),
+                name: 'merchantAdd',
+                meta: { title: '添加商家', noCache: true, roles: ['admin'] }
+            },
+            {
+                path: 'merchantEdit',
+                component: () => import('@/pages/merchant/edit.vue'),
+                name: 'merchantEdit',
+                hidden: true,
+                meta: {
+                    title: '编辑商家',
+                    noCache: true,
+                    roles: ['merchant', 'admin']
+                }
+            },
+            {
+                path: 'merchantView',
+                component: () => import('@/pages/merchant/view.vue'),
+                name: 'merchantView',
+                meta: { title: '商家信息', noCache: true, roles: ['merchant'] }
+            }
+        ]
+    }
+]
+
 const router = createRouter({
     history: createWebHashHistory(),
-    routes: constantRoutes
+    routes: [...constantRoutes, ...asyncRoutes]
 })
 
 export default router

@@ -19,3 +19,12 @@ export function userLogout() {
         url: '/user/logout'
     })
 }
+
+// 修改密码
+export function userEditPsd(data) {
+    return service({
+        url: '/user/savePasswordModify',
+        method: 'post',
+        data
+    })
+}

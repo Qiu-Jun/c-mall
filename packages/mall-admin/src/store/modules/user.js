@@ -47,6 +47,7 @@ const useUser = defineStore({
                     .then(({ code, data }) => {
                         if (code === 200) {
                             this.token = data
+                            this.roles.push(data.userType)
                             setToken(data)
                             resolve()
                         }
@@ -61,6 +62,9 @@ const useUser = defineStore({
             this.token = ''
             this.roles = []
             this.menus = []
+            Cookie.remove('userUuid')
+            Cookie.remove('userName')
+            Cookie.remove('userType')
             removeToken()
             router.replace({ path: '/login' })
         },

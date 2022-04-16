@@ -14,6 +14,21 @@ module.exports = (app) => {
         controller.user.common.savePasswordModify
     )
 
+    // 商家管理
+    router.post('/user/merchant/saveNew', controller.user.merchant.saveNew)
+    router.post(
+        '/user/merchant/saveModify',
+        controller.user.merchant.saveModify
+    )
+    router.post('/user/merchant/query', controller.user.merchant.query)
+    router.get('/user/merchant/get', controller.user.merchant.get)
+
+    // 订货单
+    router.post('/bill/order/query', controller.goodsOrder.query)
+    router.get('/bill/order/get', controller.goodsOrder.get)
+    router.post('/bill/order/dispatch', controller.goodsOrder.dispatch)
+    router.post('/bill/order/complete', controller.goodsOrder.complete)
+
     // 消息通知
     router.get('/notice/readAll', controller.notice.readAll)
     router.get('/notice/overview', controller.notice.overview)
@@ -40,6 +55,26 @@ module.exports = (app) => {
         controller.goodsCategory.getDropdownList
     )
     router.get('/goodsCategory/get', controller.goodsCategory.get)
+
+    // 运费方案
+    router.post('/freightPlan/saveNew', controller.freightPlan.saveNew)
+    router.post('/freightPlan/saveModify', controller.freightPlan.saveModify)
+    router.post('/freightPlan/remove', controller.freightPlan.remove)
+    router.post('/freightPlan/query', controller.freightPlan.query)
+    router.get('/freightPlan/get', controller.freightPlan.get)
+
+    // 送货时间
+    router.post(
+        '/deliveryTimeType/saveNew',
+        controller.deliveryTimeType.saveNew
+    )
+    router.post(
+        '/deliveryTimeType/saveModify',
+        controller.deliveryTimeType.saveModify
+    )
+    router.post('/deliveryTimeType/remove', controller.deliveryTimeType.remove)
+    router.post('/deliveryTimeType/query', controller.deliveryTimeType.query)
+    router.get('/deliveryTimeType/get', controller.deliveryTimeType.get)
 
     // 统计
     router.get('/statistics/order/getForDay', controller.statistics.getForDay)

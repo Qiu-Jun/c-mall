@@ -192,6 +192,7 @@ export default defineComponent({
             }
         }, 250)
         const handleDialogClose = () => {
+            dialogType = ''
             dialogFormRef.value.resetFields()
         }
         const handleAdd = debounce(() => {
@@ -232,7 +233,7 @@ export default defineComponent({
             })
         }, 250)
 
-        const handleDelte = (uuid) => {
+        const handleDelte = debounce((uuid) => {
             ElMessageBox.confirm('将永久删除该类别, 是否继续？', '提示', {
                 type: 'warning',
                 cancelButtonText: '取消',
@@ -254,7 +255,7 @@ export default defineComponent({
                     }
                 })
             })
-        }
+        }, 250)
         return {
             filterForm,
             filter,

@@ -72,7 +72,9 @@ import { defineComponent, reactive, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { debounce } from '@/utils/common'
 import useUser from '@/store/modules/user'
+import usePermission from '@/store/modules/permission'
 import defaultSettings from '@/config/settings/app'
+import Cookie from 'js-cookie'
 
 export default defineComponent({
     name: 'login',
@@ -81,6 +83,7 @@ export default defineComponent({
         const router = useRouter()
         const route = useRoute()
         const userStore = useUser()
+        const permissionStore = usePermission()
         const capsTooltip = ref(false)
         const passwordType = ref('password')
         const loginFromRef = ref(null)
@@ -131,9 +134,12 @@ export default defineComponent({
                 if (valid) {
                     userStore
                         .login(loginForm)
-                        .then(() => {
+                        .then(async () => {
                             const { query } = route
                             router.push(query.redirect || '/')
+                            permissionStore.generateRoutes([
+                                Cookie.get('userType')
+                            ])
                         })
                         .catch((err) => console.log(err))
                 }

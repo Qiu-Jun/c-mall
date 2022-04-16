@@ -5,7 +5,7 @@
  * :Description:
 -->
 <template>
-    <el-config-provider>
+    <el-config-provider :locale="locale">
         <router-view />
     </el-config-provider>
 </template>
@@ -13,6 +13,9 @@
 <script>
 import { defineComponent } from 'vue'
 import useUser from '@/store/modules/user'
+import usePermission from '@/store/modules/permission'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import Cookie from 'js-cookie'
 
 export default defineComponent({
     name: 'app',
@@ -20,6 +23,14 @@ export default defineComponent({
     setup() {
         const userStore = useUser()
         userStore.setUser()
+
+        const permissionStore = usePermission()
+        permissionStore.generateRoutes([Cookie.get('userType')])
+        // 切换为中文
+        const locale = zhCn
+        return {
+            locale
+        }
     }
 })
 </script>
