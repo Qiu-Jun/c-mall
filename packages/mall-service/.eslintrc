@@ -3,6 +3,7 @@
   "rules": {
     "arrow-parens": "off",
     "indent": "off",
-    "semi": "off"
+    "semi": "off",
+    "comma-dangle": "off"
   }
 }
