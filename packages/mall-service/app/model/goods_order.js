@@ -189,7 +189,7 @@ module.exports = (app) => {
         where: {
           uuid,
           orgUuid,
-          status: { [Op.or]: ['initial', 'audited'] },
+          status: { [Op.or]: [ 'initial', 'audited' ] },
           version
         }
       }
