@@ -1,7 +1,30 @@
 <template>
-  <view class="content">
-    <view>
-      <text class="title">{{ title }}</text>
+  <view class="home-wrap">
+    <!--搜索栏-->
+    <view class="search-box cu-bar" :class="{ 'bg-blue': !searchPanelVisible }">
+      <view class="search-form round">
+        <text class="cuIcon-search"></text>
+        <input
+          type="text"
+          v-model="keywords"
+          placeholder="搜索商品"
+          confirm-type="search"
+          @focus="showSearchPanel"
+          @confirm="search(keywords)"
+        />
+        <view
+          v-if="keywords"
+          class="action cuIcon-roundclosefill text-gray search-clear"
+          @tap="keywords = ''"
+        ></view>
+      </view>
+      <view
+        v-if="searchPanelVisible"
+        class="action text-gray"
+        @tap="hideSearchPanel"
+      >
+        取消
+      </view>
     </view>
   </view>
 </template>
@@ -10,7 +33,7 @@
 export default {
   data() {
     return {
-      title: 'Hello'
+      searchPanelVisible: false
     }
   },
   onLoad() {},
@@ -18,27 +41,67 @@ export default {
 }
 </script>
 
-<style>
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+<style lang="scss" scoped>
+.home-wrap {
+  /*搜索*/
+  .search-box {
+    z-index: 9;
+    transition: all 0.15s ease;
 
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin: 200rpx auto 50rpx auto;
-}
+    .search-clear {
+      font-size: 32rpx !important;
+    }
+  }
 
-.text-area {
-  display: flex;
-  justify-content: center;
-}
+  .search-panel {
+    position: absolute;
+    z-index: 8;
+    padding-top: 100rpx;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: $uni-white;
+    transition: all 0.15s ease;
+    overflow: hidden;
 
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
+    &.show {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .cu-tag {
+      margin-right: 20rpx;
+      margin-bottom: 20rpx;
+
+      + .cu-tag {
+        margin-left: 0;
+      }
+    }
+
+    .search-empty {
+      position: absolute;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+
+      &-icon {
+        width: 240rpx;
+        height: 240rpx;
+        background: url('../../static/imgs/data-empty.png') no-repeat center;
+        background-size: contain;
+      }
+    }
+  }
+
+  .cart-add-btn {
+    width: 100%;
+    border-radius: 0;
+  }
 }
 </style>

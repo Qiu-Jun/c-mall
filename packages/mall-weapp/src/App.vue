@@ -12,6 +12,7 @@ export default {
 }
 </script>
 
-<style>
-/*每个页面公共css */
+<style lang="scss">
+@import 'lib/colorui/main.css';
+@import 'lib/colorui/icon.css';
 </style>
