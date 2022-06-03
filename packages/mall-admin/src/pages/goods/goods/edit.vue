@@ -149,13 +149,18 @@ export default defineComponent({
         const router = useRouter()
         // store
         const tagsViewsStore = useTagsViews()
-
+        const fileList = ref([])
         // 获取商品
         const getGoodsDetail = () => {
             goodsDetail({ uuid: route.query.goodsUuid }).then(
                 ({ code, data }) => {
                     if (code === 200) {
+                        data.imagesJsonStr = JSON.parse(data.imagesJsonStr)
                         data.salePrice = +data.salePrice
+                        fileList.value = data.imagesJsonStr.map((i, idx) => ({
+                            name: idx,
+                            url: i
+                        }))
                         Object.assign(editForm, data)
                     }
                 }
@@ -172,13 +177,11 @@ export default defineComponent({
             })
         }
         getCates()
-
-        const fileList = ref([])
-        const handleUploadRemove = (file, fileList) => {
-            fileList.value = fileList
+        const handleUploadRemove = (file, fileLists) => {
+            fileList.value = fileLists
         }
-        const handleUploadSuccess = (response, file, fileList) => {
-            fileList.value = fileList
+        const handleUploadSuccess = (response, file, fileLists) => {
+            fileList.value = fileLists
         }
         const handleUploadError = () => {
             ElMessage({
@@ -189,8 +192,8 @@ export default defineComponent({
 
         const formatImagesJsonStr = () => {
             const images = fileList.value.map((item = {}) => {
-                const { response = {}, url } = item
-                return response.data || url
+                const { response = '', url } = item
+                return response || url
             })
             editForm.thumbnail = images[0] || ''
             editForm.imagesJsonStr = JSON.stringify(images)

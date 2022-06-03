@@ -20,6 +20,20 @@
                             v-model.trim="merchantForm.linkMan"
                         ></el-input>
                     </el-form-item>
+                    <el-form-item label="小程序appid" prop="appId">
+                        <el-input v-model.trim="merchantForm.appId"></el-input>
+                    </el-form-item>
+                    <el-form-item label="小程序appsecret" prop="appSecret">
+                        <el-input
+                            v-model.trim="merchantForm.appSecret"
+                        ></el-input>
+                    </el-form-item>
+                    <el-form-item label="商户号" prop="mchId">
+                        <el-input v-model.trim="merchantForm.mchId"></el-input>
+                    </el-form-item>
+                    <el-form-item label="商户密钥" prop="mchKey">
+                        <el-input v-model.trim="merchantForm.mchKey"></el-input>
+                    </el-form-item>
                     <el-form-item label="联系电话" prop="linkPhone">
                         <el-input
                             v-model.trim="merchantForm.linkPhone"
@@ -162,6 +176,22 @@ export default defineComponent({
         const rules = reactive({
             name: [
                 { required: true, message: '请输入商家名称', trigger: 'blur' }
+            ],
+            appId: [
+                {
+                    required: true,
+                    message: '请输入小程序appid',
+                    trigger: 'blur'
+                }
+            ],
+            appSecret: [
+                { required: true, message: '请输入小程序密钥', trigger: 'blur' }
+            ],
+            mchId: [
+                { required: true, message: '请输入商户号', trigger: 'blur' }
+            ],
+            mchKey: [
+                { required: true, message: '请输入商户密钥', trigger: 'blur' }
             ],
             password: [
                 { required: true, validator: validatePass, trigger: 'blur' }

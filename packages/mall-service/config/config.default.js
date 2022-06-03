@@ -21,7 +21,7 @@ module.exports = (appInfo) => {
     config.middleware = ['errorHandler', 'auth']
 
     config.auth = {
-        ignore: ['/user/login']
+        ignore: ['/user/login', '/weapp/login', '/weapp/getGoodsWithCategory']
     }
 
     const userConfig = {

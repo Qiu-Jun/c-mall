@@ -159,11 +159,11 @@ export default defineComponent({
         getCates()
 
         const fileList = ref([])
-        const handleUploadRemove = (file, fileList) => {
-            fileList.value = fileList
+        const handleUploadRemove = (file, fileLists) => {
+            fileList.value = fileLists
         }
-        const handleUploadSuccess = (response, file, fileList) => {
-            fileList.value = fileList
+        const handleUploadSuccess = (response, file, fileLists) => {
+            fileList.value = fileLists
         }
         const handleUploadError = () => {
             ElMessage({
@@ -174,8 +174,8 @@ export default defineComponent({
 
         const formatImagesJsonStr = () => {
             const images = fileList.value.map((item = {}) => {
-                const { response = {}, url } = item
-                return response.data || url
+                const { response = '' } = item
+                return response
             })
             goodsForm.thumbnail = images[0] || ''
             goodsForm.imagesJsonStr = JSON.stringify(images)

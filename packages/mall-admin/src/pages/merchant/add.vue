@@ -17,6 +17,20 @@
                             placehodler="请输入1到16位账号（字母，数字，下划线，减号）"
                         ></el-input>
                     </el-form-item>
+                    <el-form-item label="小程序appid" prop="appId">
+                        <el-input v-model.trim="merchantForm.appId"></el-input>
+                    </el-form-item>
+                    <el-form-item label="小程序appsecret" prop="appSecret">
+                        <el-input
+                            v-model.trim="merchantForm.appSecret"
+                        ></el-input>
+                    </el-form-item>
+                    <el-form-item label="商户号" prop="mchId">
+                        <el-input v-model.trim="merchantForm.mchId"></el-input>
+                    </el-form-item>
+                    <el-form-item label="商户密钥" prop="mchKey">
+                        <el-input v-model.trim="merchantForm.mchKey"></el-input>
+                    </el-form-item>
                     <el-form-item label="联系人" prop="linkMan">
                         <el-input
                             v-model.trim="merchantForm.linkMan"
@@ -96,11 +110,17 @@ export default defineComponent({
             servicePhone: '',
             userName: '',
             password: '',
-            checkPassword: ''
+            checkPassword: '',
+            appId: '',
+            appSecret: '',
+            mchId: '',
+            mchKey: ''
         })
         const merchantFormRef = ref(null)
         const validateUserName = (rule, value, callback) => {
-            if (Pattern.userName.test(value)) {
+            if (value === '') {
+                callback(new Error('请输入帐号'))
+            } else if (Pattern.userName.test(value)) {
                 callback()
             } else {
                 callback(
@@ -139,17 +159,37 @@ export default defineComponent({
             ],
             checkPassword: [
                 { required: true, validator: validatePass2, trigger: 'blur' }
+            ],
+            appId: [
+                {
+                    required: true,
+                    message: '请输入小程序appid',
+                    trigger: 'blur'
+                }
+            ],
+            appSecret: [
+                { required: true, message: '请输入小程序密钥', trigger: 'blur' }
+            ],
+            mchId: [
+                { required: true, message: '请输入商户号', trigger: 'blur' }
+            ],
+            mchKey: [
+                { required: true, message: '请输入商户密钥', trigger: 'blur' }
             ]
         })
         const submitForm = () => {
-            merchantAdd({ merchant: merchantForm }).then(({ code }) => {
-                if (code === 200) {
-                    ElMessage({
-                        type: 'success',
-                        message: '添加成功'
+            merchantFormRef.value.validate((valid) => {
+                if (valid) {
+                    merchantAdd({ merchant: merchantForm }).then(({ code }) => {
+                        if (code === 200) {
+                            ElMessage({
+                                type: 'success',
+                                message: '添加成功'
+                            })
+                            tagsViewsStore.delVisitedView(route)
+                            router.push('/merchant/list')
+                        }
                     })
-                    tagsViewsStore.delVisitedView(route)
-                    router.push('/merchant/list')
                 }
             })
         }

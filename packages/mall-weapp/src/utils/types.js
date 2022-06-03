@@ -1,18 +1,18 @@
 const toString = Object.prototype.toString
 function typeOf(obj) {
-  const maps = {
-    '[object Boolean]': 'boolean',
-    '[object Number]': 'number',
-    '[object String]': 'string',
-    '[object Function]': 'function',
-    '[object Array]': 'array',
-    '[object Date]': 'date',
-    '[object RegExp]': 'regExp',
-    '[object Undefined]': 'undefined',
-    '[object Null]': 'null',
-    '[object Object]': 'object'
-  }
-  return maps[toString.call(obj)]
+    const maps = {
+        '[object Boolean]': 'boolean',
+        '[object Number]': 'number',
+        '[object String]': 'string',
+        '[object Function]': 'function',
+        '[object Array]': 'array',
+        '[object Date]': 'date',
+        '[object RegExp]': 'regExp',
+        '[object Undefined]': 'undefined',
+        '[object Null]': 'null',
+        '[object Object]': 'object'
+    }
+    return maps[toString.call(obj)]
 }
 /**
  * @desc 检查函数
@@ -20,7 +20,16 @@ function typeOf(obj) {
  * @returns { Boolean }
  */
 export function isFunction(obj) {
-  return typeOf(obj) === 'function'
+    return typeOf(obj) === 'function'
+}
+
+/**
+ * @desc 检查对象
+ * @param obj
+ * @returns { Boolean }
+ */
+export function isObject(obj) {
+    return typeOf(obj) === 'object'
 }
 
 /**
@@ -29,7 +38,7 @@ export function isFunction(obj) {
  * @returns { Boolean }
  */
 export function isArray(obj) {
-  return typeOf(obj) === 'array'
+    return typeOf(obj) === 'array'
 }
 
 /**
@@ -38,7 +47,7 @@ export function isArray(obj) {
  * @returns { Boolean }
  */
 export function isNumber(obj) {
-  return typeOf(obj) === 'number'
+    return typeOf(obj) === 'number'
 }
 
 /**
@@ -47,5 +56,5 @@ export function isNumber(obj) {
  * @returns { Boolean }
  */
 export function isString(obj) {
-  return typeOf(obj) === 'string'
+    return typeOf(obj) === 'string'
 }

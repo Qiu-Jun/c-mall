@@ -17,6 +17,7 @@ class MerchantController extends Controller {
             console.log(uuid)
             ctx.success({ data: { uuid } })
         } catch (error) {
+            console.log(error)
             const { fields = {}, name } = error
             if (name === 'SequelizeUniqueConstraintError') {
                 ctx.fail({
