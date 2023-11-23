@@ -1,0 +1,5 @@
+public
+node_modules
+dist
+/src/dts/auto-imports.d.ts
+/src/dts/components.d.ts
