@@ -1,20 +1,27 @@
-## c-mall
+<!--
+ * @Descripttion:
+ * @version:
+ * @Author: June
+ * @Date: 2023-03-17 22:02:02
+ * @LastEditors: June
+ * @LastEditTime: 2023-06-22 12:48:40
+-->
 
-这个项目是我基于[这个仓库](https://github.com/ruiyong-lee/weapp-vue-eggjs-shop-demo)优化出来自己接单用的商城， 这里是简化版和升级 vue3
+#### 启动 lib
 
-## introduct
+```bash
+# 安装依赖
+pnpm install
 
--   mall-weapp
-    -   uniapp
-    -   colorui
--   mall-admin
-    -   vue3
-    -   vite
--   mall-service
-    -   eggjs
+# 启动
+pnpm run dev
 
-## unfinish
+# 打包
+pnpm run build
+```
 
--   [ - ] 小程序端
--   [ - ] 服务端缺陷
--   [ - ] 管理端缺陷
+#### Todo
+
+- [x] 支持 monorepo
+
+- [x] commitlint

@@ -1,5 +1,5 @@
-dist
-node_modules
-pnpm-lock.yaml
+node_modules/
+dist/
+index.html
 .eslintrc-auto-import.json
 .auto-imports.d.ts
